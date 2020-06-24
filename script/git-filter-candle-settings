@@ -1,0 +1,11 @@
+#!/bin/sh
+# git config --local filter.candle-settings.clean script/git-filter-candle-settings
+sed -e 's/^\(heightmapBorder\(Height\|Width\)\)=[0-9.]*$/\1=1/g;' \
+    -e 's/^\(heightmapBorder[XY]\)=[0-9.-]*$/\1=0/g;' \
+    -e 's/^\(heightmapGrid[XY]\)=[0-9]*$/\1=2/g;' \
+    -e 's/^\(heightmapInterpolationStep[XY]\)=[0-9]*$/\1=2/g;' \
+    -e 's/^jogFeed=[0-9]*$/jogFeed=500/g;' \
+    -e 's/^lastFolder=.*$/lastFolder=\/home/g;' \
+    -e 's/^\(recent\(Commands\|Files\|Heightmaps\)\)=.*$/\1=@Invalid()/g;' \
+    -e 's/^\(stored[XYZ]\)=[0-9.-]*$/\1=0/g;' \
+
