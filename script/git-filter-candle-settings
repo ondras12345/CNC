@@ -8,4 +8,7 @@ sed -e 's/^\(heightmapBorder\(Height\|Width\)\)=[0-9.]*$/\1=1/g;' \
     -e 's/^lastFolder=.*$/lastFolder=\/home/g;' \
     -e 's/^\(recent\(Commands\|Files\|Heightmaps\)\)=.*$/\1=@Invalid()/g;' \
     -e 's/^\(stored[XYZ]\)=[0-9.-]*$/\1=0/g;' \
-
+    -e 's/^\(\(feed\|rapid\|spindle\)Override\)=true$/\1=false/g;' \
+    -e 's/^\(\(feed\|rapid\|spindle\)OverrideValue\)=[0-9]*$/\1=100/g;' \
+    -e 's/^\(\(feed\|heightmap\|jog\|spindle\|userCommands\)Panel\)=false/\1=true/g;' \
+    -e 's/^spindleSpeed=[0-9]*$/spindleSpeed=1000/g'
