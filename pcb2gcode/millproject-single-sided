@@ -1,0 +1,65 @@
+# Copy this file to your gerber directory and name it `millproject`
+# See `man pcb2gcode`
+
+# Set paths to gbr files
+back=
+drill=
+outline=
+
+
+# Machine settings
+metric=true
+metricoutput=true
+zsafe=5
+spinup-time=1second
+zchange=-5
+zchange-absolute=true
+g0-vertical-speed=500
+g0-horizontal-speed=800
+nog81=true
+# TODO keep M6 and handle in bCNC
+#nom6=true
+nog64=true
+
+
+# Optimization
+# TODO
+#optimise=?
+#path-finding-limit=?
+
+
+# Milling
+mill-diameters=1.0mm,0.39mm
+mill-feed=200
+mill-vertfeed=80
+mill-speed=10000
+zwork=-0.12
+
+# Voronoi mode (not tested)
+#voronoi=true
+#preserve-thermal-reliefs=true
+
+
+# Drilling
+drill-side=back
+zdrill=-1.65
+drill-feed=120
+drill-speed=10000
+drills-available=0.8mm:-0.3mm:+0.1mm,1.0mm:-0.2mm:+0.2mm
+
+zmilldrill=-1.60
+milldrill-diameter=1.0
+min-milldrill-hole-diameter=1.2  # TODO need 1.0 for 1mm slots
+# outline (cut-) feeds and speeds are used
+
+# Outline
+cutter-diameter=1.0
+zcut=-1.60
+cut-feed=60
+cut-vertfeed=25
+cut-speed=10000
+cut-infeed=0.8
+cut-side=back
+bridges=2mm
+zbridges=-0.8mm
+bridgesnum=2
