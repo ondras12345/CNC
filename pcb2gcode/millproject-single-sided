@@ -12,12 +12,13 @@ metric=true
 metricoutput=true
 zsafe=5
 spinup-time=1
-zchange=-5
-zchange-absolute=true
+zchange=10
+# zchange-absolute interacts badly with bCNC autolevel.
+#zchange-absolute=true
 g0-vertical-speed=500
 g0-horizontal-speed=800
 nog81=true
-# TODO keep M6 and handle in bCNC
+# Keep M6 and handle in bCNC
 #nom6=true
 nog64=true
 
