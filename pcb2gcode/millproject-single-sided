@@ -10,7 +10,7 @@ outline=
 # Machine settings
 metric=true
 metricoutput=true
-zsafe=5
+zsafe=2
 spinup-time=1
 zchange=10
 # zchange-absolute interacts badly with bCNC autolevel.
