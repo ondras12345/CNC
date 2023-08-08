@@ -67,7 +67,7 @@ EOF2
 fi
 echo "drill-side=back"
 )
-zdrill=-1.65
+zdrill=-1.75
 drill-feed=120
 drill-speed=10000
 drills-available=0.8mm:-0.3mm:+0.1mm,1.0mm:-0.2mm:+0.2mm
