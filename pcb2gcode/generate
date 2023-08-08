@@ -79,7 +79,7 @@ min-milldrill-hole-diameter=1.2  # TODO need 1.0 for 1mm slots
 
 # Outline
 cutter-diameter=1.0
-zcut=-1.60
+zcut=-1.65
 cut-feed=80
 cut-vertfeed=30
 cut-speed=10000
