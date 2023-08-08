@@ -47,9 +47,11 @@ zwork=-0.12
 
 
 # Drilling
-# For double sided board, we want to drill from the front side and use the
-# drill bit to drill alignment holes before flipping the board.
-drill-side=front
+# Even for double sided board, we want to drill from the front side.
+# It might be tempting to drill from the front and use the bit to drill
+# alignment holes, but that would interfere with back side autolevelling in
+# bCNC.
+drill-side=back
 zdrill=-1.65
 drill-feed=120
 drill-speed=10000
