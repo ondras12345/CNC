@@ -36,6 +36,10 @@ mill-vertfeed=80
 mill-speed=10000
 zwork=-0.12
 
+# Uncomment to enable multi-pass isolation
+#isolation-width=1.0mm
+#milling-overlap=50%
+
 # Voronoi mode (not tested)
 #voronoi=true
 #preserve-thermal-reliefs=true
