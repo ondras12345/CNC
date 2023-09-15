@@ -52,7 +52,7 @@ drill-feed=120
 drill-speed=10000
 drills-available=0.8mm:-0.3mm:+0.1mm,1.0mm:-0.2mm:+0.2mm
 
-zmilldrill=-1.60
+zmilldrill=-1.65
 milldrill-diameter=1.0
 min-milldrill-hole-diameter=1.2  # TODO need 1.0 for 1mm slots
 # outline (cut-) feeds and speeds are used
