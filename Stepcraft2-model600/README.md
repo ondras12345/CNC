@@ -21,6 +21,13 @@ this is by design.
 - https://cncfaq.us/maintenance/
 
 
+## Laser
+I wanted to mount the 0.5 W diode laser that I got with my old 1610 CNC
+machine in the Stepcraft 43 mm holder, so 3D printed an adapter part:
+`laser-mounitng-adapter.FCStd`. The model is parametric, the OD parameter
+should probably be increased a bit. See `Params` spreadsheet.
+
+
 ## LinuxCNC configuration
 ### Latency
 I am running LinuxCNC with standard preempt_RT kernel on a HP Compaq

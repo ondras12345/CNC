@@ -1,0 +1,9 @@
+# Prusaslicer project files
+*.3mf
+
+# FreeCAD backup files
+*.fcstd1
+*.FCStd1
+*.fcstd2
+*.FCStd2
+*.FCBak
