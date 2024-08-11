@@ -17,6 +17,10 @@ the VFD ignores the state of all e-stop switches! As far as I can tell,
 this is by design.
 
 
+## Maintenance
+- https://cncfaq.us/maintenance/
+
+
 ## LinuxCNC configuration
 ### Latency
 I am running LinuxCNC with standard preempt_RT kernel on a HP Compaq
@@ -48,3 +52,10 @@ I got the CNC with a CD that contained a Mach4 configuration file. I used
 that as a reference for setting up axes in `stepconf`.
 
 TODO publish final config
+
+
+### Keyboard shortcut cheatsheet
+- based off https://commons.wikimedia.org/wiki/File:QWERTY_keyboard_diagram.svg
+- http://wiki.linuxcnc.org/cgi-bin/wiki.pl?Keyboard_Shortcuts
+
+![LinuxCNC keyboard shortcut cheatsheet](linuxcnc-keyboard-shortcut-cheatsheet)
