@@ -1,0 +1,4 @@
+# Include your custom HAL commands here
+# This file will not be overwritten when you run stepconf again
+
+loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER --mqtt-prefix=[MQTT]PREFIX --mqtt-user=[MQTT]USERNAME --mqtt-password=[MQTT]PASSWORD keys=halui.estop.is-activated,halui.machine.is-on,halui.mode.is-auto,halui.mode.is-manual,halui.mode.is-mdi,halui.mode.is-teleop,halui.program.is-running,halui.spindle.is-on,halui.mode.is-mdi,halui.mode.is-manual,halui.program.is-idle,halui.program.is-paused,halui.program.is-running,halui.mist.is-on,halui.flood.is-on
