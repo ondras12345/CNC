@@ -25,16 +25,11 @@ fi
 metric=true
 metricoutput=true
 zsafe=2
-spinup-time=1
-zchange=10
-# zchange-absolute interacts badly with bCNC autolevel.
-#zchange-absolute=true
-g0-vertical-speed=500
-g0-horizontal-speed=800
-nog81=true
-# Keep M6 and handle in bCNC
-#nom6=true
-nog64=true
+spinup-time=2.5
+zchange=0
+zchange-absolute=true
+g0-vertical-speed=3000
+g0-horizontal-speed=3000
 
 
 # Optimization
@@ -45,12 +40,13 @@ nog64=true
 
 # Milling
 mill-diameters=1.0mm,0.39mm
-mill-feed=200
-mill-vertfeed=80
-mill-speed=10000
+mill-feed=500
+mill-vertfeed=120
+mill-speed=20000
 zwork=-0.12
 
 # Uncomment to enable multi-pass isolation
+# TODO always do at least 1mm multi-pass ??
 #isolation-width=1.0mm
 #milling-overlap=50%
 
@@ -65,15 +61,14 @@ if [ -n "$DOUBLE_SIDED" ] ; then
     cat <<EOF2
 # Even for double sided board, we want to drill from the back side.
 # It might be tempting to drill from the front and use the bit to drill
-# alignment holes, but that would interfere with back side autolevelling in
-# bCNC.
+# alignment holes, but that would interfere with back side autolevelling.
 EOF2
 fi
 echo "drill-side=back"
 )
 zdrill=-1.75
-drill-feed=120
-drill-speed=10000
+drill-feed=700
+drill-speed=20000
 drills-available=0.8mm:-0.3mm:+0.1mm,1.0mm:-0.2mm:+0.2mm
 
 zmilldrill=-1.65
@@ -84,12 +79,26 @@ min-milldrill-hole-diameter=1.2  # TODO need 1.0 for 1mm slots
 # Outline
 cutter-diameter=1.0
 zcut=-1.65
-cut-feed=80
+cut-feed=80  # TODO adjust
 cut-vertfeed=30
-cut-speed=10000
+cut-speed=20000
 cut-infeed=0.85
 cut-side=back
 bridges=2mm
 zbridges=-0.8mm
 bridgesnum=2
+
+# Autolevelling
+al-back=1
+$(if [ -n "$DOUBLE_SIDED" ] ; then
+    echo "al-front=1"
+fi
+)
+software=linuxcnc
+al-x=10mm
+al-y=10mm
+# probing with 3D touch probe should allow us to go faster
+al-probefeed=100  # TODO faster ?? - calculate from controller latency
+al-probecode=G38.2
+# TODO this does not autolevel outline and drilling
 EOF
