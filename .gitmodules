@@ -1,0 +1,3 @@
+[submodule "Stepcraft2-model600/relays/CNC-relays/lib/wt32-eth01"]
+	path = Stepcraft2-model600/relays/CNC-relays/lib/wt32-eth01
+	url = git@github.com:egnor/wt32-eth01.git
