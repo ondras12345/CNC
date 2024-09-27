@@ -17,9 +17,10 @@ zchange-absolute=true
 g0-vertical-speed=3000
 g0-horizontal-speed=3000
 
-# TODO control vacuum - probably better to define custom M codes rather than abusing flood coolant like this
-pre-milling-gcode=M8
-post-milling-gcode=M9
+# TODO control vacuum - this is not a good way to do it, because it emits M8/M9
+# each time the tool lifts up to zsafe and plunges back down.
+#pre-milling-gcode=M8
+#post-milling-gcode=M9
 
 # Optimization
 optimise=0.02mm
