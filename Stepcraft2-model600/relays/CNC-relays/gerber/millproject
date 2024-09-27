@@ -1,0 +1,82 @@
+# Copy this file to your gerber directory and name it `millproject`
+# See `man pcb2gcode`
+
+# Set paths to gbr files
+back=CNC-relays-B_Cu.gbr
+drill=CNC-relays.drl
+outline=CNC-relays-Edge_Cuts.gbr
+
+
+# Machine settings
+metric=true
+metricoutput=true
+zsafe=2
+spinup-time=2.5
+zchange=0
+zchange-absolute=true
+g0-vertical-speed=3000
+g0-horizontal-speed=3000
+
+# TODO control vacuum - probably better to define custom M codes rather than abusing flood coolant like this
+# TODO this will set M8 every time we move from zsafe to zwork, that's not what I need
+pre-milling-gcode=M8
+post-milling-gcode=M9
+
+# Optimization
+optimise=0.02mm
+path-finding-limit=50
+backtrack=25mm/s
+
+
+# Milling
+mill-diameters=1.0mm,0.39mm
+mill-feed=500
+# TODO investigate mill-feed-direction (climb vs conventional)
+mill-vertfeed=120
+mill-speed=20000
+zwork=-0.12
+
+# Multi-pass isolation
+isolation-width=1.0mm
+milling-overlap=50%
+
+# Voronoi mode (not tested)
+#voronoi=true
+#preserve-thermal-reliefs=true
+
+
+# Drilling
+drill-side=back
+zdrill=-1.85
+drill-feed=700
+drill-speed=20000
+drills-available=0.8mm:-0.3mm:+0.1mm,1.0mm:-0.2mm:+0.2mm
+
+zmilldrill=-1.85
+milldrill-diameter=1.0
+min-milldrill-hole-diameter=1.01  # TODO need 1.0 for 1mm slots
+# outline (cut-) feeds and speeds are used
+
+# Outline
+cutter-diameter=1.0
+zcut=-1.85
+cut-feed=200
+cut-vertfeed=35
+cut-speed=20000
+cut-infeed=0.85
+cut-side=back
+bridges=1.5mm
+zbridges=-0.8mm
+bridgesnum=2
+
+# Autolevelling
+al-back=1
+
+software=linuxcnc
+al-x=10mm
+al-y=10mm
+# probing with 3D touch probe should allow us to go faster
+al-probefeed=25  # TODO faster ?? - calculate from controller latency
+# 100 would probably be fine with 3D probe
+al-probecode=G38.2
+# TODO this does not autolevel outline and drilling
