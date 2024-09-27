@@ -38,7 +38,9 @@ post-milling-gcode=M9
 # Optimization
 optimise=0.02mm
 #path-finding-limit=?
-backtrack=25mm/s
+# If the trace is already milled, there should be no real re-cutting,
+# so we can probably leave backtrack set to inf (default).
+#backtrack=
 
 
 # Milling
