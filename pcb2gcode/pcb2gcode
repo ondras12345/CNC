@@ -146,7 +146,7 @@ EOF
 
 
 function get_deploy_dir() {
-    project_dirs=("$DEPLOY_DIR/"*-${project_name})
+    project_dirs=("$DEPLOY_DIR/"*"-${project_name}")
     n_project_dirs=${#project_dirs[@]}
     if [[ $n_project_dirs -eq 1 ]] ; then
         project_dir="${project_dirs[0]}"
