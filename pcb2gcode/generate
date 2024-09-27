@@ -87,8 +87,8 @@ cut-vertfeed=35
 cut-speed=20000
 cut-infeed=0.85
 cut-side=back
-bridges=1.5mm
-zbridges=-0.8mm
+bridges=1mm
+zbridges=-0.5mm
 bridgesnum=2
 
 # Autolevelling
