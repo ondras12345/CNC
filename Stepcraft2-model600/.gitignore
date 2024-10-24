@@ -1,3 +1,6 @@
+# STL mesh exports
+*.stl
+
 # Prusaslicer project files
 *.3mf
 

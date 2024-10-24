@@ -17,15 +17,13 @@ the VFD ignores the state of all e-stop switches! As far as I can tell,
 this is by design.
 
 
-## Maintenance
-- https://cncfaq.us/maintenance/
-
-
 ## Laser
 I wanted to mount the 0.5 W diode laser that I got with my old 1610 CNC
 machine in the Stepcraft 43 mm holder, so 3D printed an adapter part:
 `laser-mounitng-adapter.FCStd`. The model is parametric, the OD parameter
 should probably be increased a bit. See `Params` spreadsheet.
+I have also published the model on printables:
+https://www.printables.com/model/1005261-stepcraft-43-mm-holder-for-33-mm-laser
 
 
 ## LinuxCNC configuration
@@ -58,11 +56,31 @@ Based on its datasheet, I set the timings in `stepconf` like this:
 I got the CNC with a CD that contained a Mach4 configuration file. I used
 that as a reference for setting up axes in `stepconf`.
 
-TODO publish final config
+See my [linuxcnc config](../linuxcnc/stepcraft2-model600/).
 
 
-### Keyboard shortcut cheatsheet
-- based off https://commons.wikimedia.org/wiki/File:QWERTY_keyboard_diagram.svg
-- http://wiki.linuxcnc.org/cgi-bin/wiki.pl?Keyboard_Shortcuts
+## Maintenance
+- https://cncfaq.us/maintenance/
 
-![LinuxCNC keyboard shortcut cheatsheet](linuxcnc-keyboard-shortcut-cheatsheet.svg)
+### 2024-09-28
+- Removed belt cover, it was covered with coarse black dust.
+- The side of the belt closer to the work area is damaged and folds over
+  easily. This cannot be fixed without replacing the belt.
+- Ordered new belt:
+  - https://eshop.profitek.cz/stepcraft-cnc-systemy/remen-pro-pohon-v-ose-y/
+  - also available from https://shop.stepcraft-systems.com/Tooth-Belt-600
+
+### 2024-09-25
+Found issues:
+- Right Y axis leadscrew has huge backlash.
+- Y belt folds over during Y- jog.
+
+### 2024-09-22
+- X axis cable guide was assembled incorrectly by the previous owner, the
+  smaller hose was put into the bigger hole in the feedthrough and the bigger
+  hose does not fit. Designed a 3D printer part to prevent the wires from
+  bending in this location: `X-cable-guide.FCStd`.
+
+### 2024-08
+- Cleaned and lubricated all axes.
+- Disassembled Z axis (removed stepper) and adjusted roller tension properly.
