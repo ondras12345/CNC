@@ -2167,6 +2167,11 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 8d09aa3e-8b2c-44c5-8d57-15f04753af65)
   )
+  (text "Measured power:\nStandby, with ethernet, all outputs off, all opto inputs off: 46 mA @ 12 V"
+    (at 209.55 157.48 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid fbcdfdec-ce3a-42ee-a705-8a9ff8c29eea)
+  )
 
   (label "SI1" (at 127 67.31 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
