@@ -1,4 +1,58 @@
 # Include your custom HAL commands here
 # This file will not be overwritten when you run stepconf again
 
-loadusr -W mqtt-publisher --mqtt-broker=[MQTT]BROKER --mqtt-prefix=[MQTT]PREFIX --mqtt-user=[MQTT]USERNAME --mqtt-password=[MQTT]PASSWORD keys=halui.estop.is-activated,halui.machine.is-on,halui.mode.is-auto,halui.mode.is-manual,halui.mode.is-mdi,halui.mode.is-teleop,halui.program.is-running,halui.spindle.is-on,halui.mode.is-mdi,halui.mode.is-manual,halui.program.is-idle,halui.program.is-paused,halui.program.is-running,halui.mist.is-on,halui.flood.is-on
+# All options are limited to 255 characters.
+# https://github.com/LinuxCNC/linuxcnc/issues/3084
+loadusr -W mqtt-publisher \
+--mqtt-broker=[MQTT]BROKER \
+--mqtt-prefix=[MQTT]PREFIX \
+--mqtt-user=[MQTT]USERNAME \
+--mqtt-password=[MQTT]PASSWORD \
+keys=halui.estop.is-activated,halui.machine.is-on,halui.mode.is-auto,\
+halui.mode.is-manual,halui.mode.is-mdi,halui.mode.is-teleop,halui.mode.is-mdi,\
+halui.mode.is-manual,halui.program.is-idle,halui.program.is-paused,\
+halui.program.is-running \
+keys=halui.mist.is-on,halui.flood.is-on,halui.spindle.0.is-on
+
+
+## debounce probe (there were 1-2 samples long pulses when moving Z axis with 3D probe)
+#loadrt debounce cfg=1
+#addf debounce.0 base-thread
+##setp debounce.0.delay 10
+## 45 works reliably at F25 probe
+## 35 completed 25 probes, but scope shows it is close to failing
+## 30 fails
+#setp debounce.0.delay 30
+#unlinkp motion.probe-input
+#net probe-in debounce.0.0.in
+#net probe-filt debounce.0.0.out => motion.probe-input
+
+
+# custom adbounce component: build with
+# sudo halcompile --install adbounce.comp
+loadrt adbounce names=adbounce.probe
+addf adbounce.probe base-thread
+# threshold=50 increment=5 decrement=1 seemed fine, but one of ~70 probe attempts failed
+# 70,7 was still unable to complete 100 probes
+# 90,9 successfully completed 100 probes with 1mm end mill on PCB,
+# but the probe wouldn't stay triggered after the probe move stopped.
+# I guess the PCB flexes. It might be better to slow down the rising edge
+# a bit more to make the bit push harder into the PCB. However, this
+# depends on probe feed.
+
+# now that we have probefilter, we can probably use 90,18 to reduce delay
+setp adbounce.probe.threshold 90
+setp adbounce.probe.increment 18
+unlinkp motion.probe-input
+net probe-in adbounce.probe.in
+#net probe-filt adbounce.probe.out => motion.probe-input
+
+
+# custom probefilter component
+loadrt probefilter names=pf1
+addf pf1 base-thread
+# 50 ms was too little, trying 150
+setp pf1.delay 1500  # 150 ms
+net pf-m-type motion.motion-type => pf1.motion-type
+net probe-filt1 adbounce.probe.out => pf1.probe-in
+net probe-filt2 pf1.probe-out => motion.probe-input

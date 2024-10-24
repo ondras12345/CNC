@@ -1,0 +1,35 @@
+component adbounce """asymmetric debounce component
+This component is similar to the \\fBdbounce\\fR component,
+but uses different increments when counting up and down.
+This allows for an asymmetric behavior. Useful to get rid of
+"probe tripped during non-probe move" without introducing significant delay""";
+
+pin in  bit in;
+pin out bit out;
+
+param rw u32 threshold;
+param rw u32 increment=1;
+param rw u32 decrement=1;
+
+variable unsigned state=0;
+function _ nofp;
+license "GPL";
+author "Ondřej Sluka";
+;;
+FUNCTION(_) {
+
+    if (in)
+    {
+        if (state >= threshold)
+        {
+            out = 1;
+            state = threshold;  // this shouldn't be needed
+        }
+        else state += increment;
+    }
+    else
+    {
+        if (state == 0) out = 0;
+        else state -= decrement;
+    }
+}

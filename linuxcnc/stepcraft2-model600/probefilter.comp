@@ -1,0 +1,39 @@
+component probefilter """probe filter component
+This component will ignore all rising edges on the probe signal
+for a specified time after a probing move ends.
+This helps prevent "probe tripped during non-probe move" errors.""";
+
+pin in  bit probe-in;
+pin out bit probe-out;
+pin in  s32 motion-type;
+
+param rw u32 delay;
+
+variable unsigned counter=0;
+variable bool prev_probe_move=0;
+function _ nofp;
+license "GPL";
+author "Ondřej Sluka";
+;;
+
+FUNCTION (_) {
+    if (counter > 0) counter--;
+    bool probe_move = motion_type == 5;
+
+    if (!probe_move && prev_probe_move)
+    {
+        // falling edge on probe-move, start ignoring probe signal
+        counter = delay;
+    }
+    prev_probe_move = probe_move;
+
+    if (!probe_in)
+    {
+        probe_out = 0;
+    }
+    else
+    {
+        if (counter == 0) probe_out = 1;
+        // else: counter is running, we can filter this rising edge.
+    }
+}

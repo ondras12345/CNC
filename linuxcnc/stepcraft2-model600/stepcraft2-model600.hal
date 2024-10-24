@@ -26,6 +26,8 @@ net spindle-cmd-rpm => pwmgen.0.value
 net spindle-on <= spindle.0.on => pwmgen.0.enable
 net spindle-pwm <= pwmgen.0.pwm
 setp pwmgen.0.pwm-freq 0.0
+# TODO laser mode:
+#setp pwmgen.0.pwm-freq 1000.0
 setp pwmgen.0.scale 20000.0
 setp pwmgen.0.offset 0.0
 setp pwmgen.0.dither-pwm true
@@ -116,8 +118,10 @@ net all-limit => joint.2.pos-lim-sw-in
 net estop-out <= iocontrol.0.user-enable-out
 net estop-ext => iocontrol.0.emc-enable-in
 
-loadusr -W hal_manualtoolchange
-net tool-change iocontrol.0.tool-change => hal_manualtoolchange.change
-net tool-changed iocontrol.0.tool-changed <= hal_manualtoolchange.changed
-net tool-number iocontrol.0.tool-prep-number => hal_manualtoolchange.number
-net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
+# commented out as per
+# https://github.com/verser-git/probe_screen_v2.9/blob/main/psng/install_del_from_your.hal
+#loadusr -W hal_manualtoolchange
+#net tool-change iocontrol.0.tool-change => hal_manualtoolchange.change
+#net tool-changed iocontrol.0.tool-changed <= hal_manualtoolchange.changed
+#net tool-number iocontrol.0.tool-prep-number => hal_manualtoolchange.number
+#net tool-prepare-loopback iocontrol.0.tool-prepare => iocontrol.0.tool-prepared
