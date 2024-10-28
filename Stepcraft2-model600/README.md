@@ -62,6 +62,25 @@ See my [linuxcnc config](../linuxcnc/stepcraft2-model600/).
 ## Maintenance
 - https://cncfaq.us/maintenance/
 
+### 2024-10-26
+- The belt situation has gotten worse since the last log, the machine would
+  fail to move completely.
+- Right (closer to the window) Y pulley was wrapped with steel wire from the
+  belt.
+- Right Y pulley was moving on the leadscrew - the grub screw was loose.
+- Removed right Y pulley from leadscrew. There was grease on the interface,
+  I wiped it clean and put the pulley back on.
+- Replaced belt.
+- Tutorials followed:
+  - https://www.youtube.com/watch?v=cZNLv7w0tCs
+  - https://www.youtube.com/watch?v=zrz58k_M_2g
+  - https://www.youtube.com/watch?v=GKEKqlukmYs
+  - https://www.youtube.com/watch?v=RyjEeQAENyk
+- When the belt was too loose, it would skip during rapid moves.
+- Now it stalls when crashed during rapid, but still skips at F100.
+- Now the Y axis is really easy to stall.
+- Fixed by tightening the belt a little more. Why does that help?!
+
 ### 2024-09-28
 - Removed belt cover, it was covered with coarse black dust.
 - The side of the belt closer to the work area is damaged and folds over
