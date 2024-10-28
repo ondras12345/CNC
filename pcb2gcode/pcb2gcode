@@ -3,7 +3,7 @@
 # settings:
 # double sided: either set DOUBLE_SIDED=1 or leave DOUBLE_SIDED=
 DOUBLE_SIDED=
-# include bridges (useful if you aren't using double sided tape
+# include bridges (useful if you aren't using double sided tape)
 BRIDGES=1
 # actual thickness of PCB blank in mm
 PCB_THICKNESS=1.5
@@ -37,9 +37,6 @@ function get_project_name() {
 # Generate pcb2gcode config
 function conf() {
 cat <<EOF
-# Copy this file to your gerber directory and name it \`millproject\`
-# See \`man pcb2gcode\`
-
 # Set paths to gbr files
 back=$project_name-B_Cu.gbr
 drill=$project_name.drl
@@ -151,7 +148,7 @@ function get_deploy_dir() {
     if [[ $n_project_dirs -eq 1 ]] ; then
         project_dir="${project_dirs[0]}"
         read -p "overwrite existing project $project_dir? [Yn] " -n 1 -r
-        if [[ $REPLY =~ ^[Yu]$ ]] ; then
+        if [[ $REPLY =~ ^[Yy]$ ]] ; then
             echo "$project_dir"
             return
         fi
@@ -169,6 +166,7 @@ function get_deploy_dir() {
 function deploy() {
     prjdir="$(get_deploy_dir)"
     echo "deploying to $prjdir"
+    mkdir -p "$prjdir"
     cp ./*.ngc pcb2gcode.log <() "$prjdir/"
     conf > "$prjdir/millproject"
 }
