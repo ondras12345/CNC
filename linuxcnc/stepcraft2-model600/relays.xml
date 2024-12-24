@@ -1,0 +1,20 @@
+<pyvcp>
+    <label>
+        <text>"Mains relays"</text>
+    </label>
+    <checkbutton>
+        <halpin>"relay-machine"</halpin>
+        <text>"Machine power"</text>
+        <initval>0</initval>
+    </checkbutton>
+    <checkbutton>
+        <halpin>"relay-spindle"</halpin>
+        <text>"Spindle power"</text>
+        <initval>0</initval>
+    </checkbutton>
+    <checkbutton>
+        <halpin>"relay-spindle-air"</halpin>
+        <text>"Spindle air"</text>
+        <initval>0</initval>
+    </checkbutton>
+</pyvcp>

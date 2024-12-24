@@ -12,7 +12,11 @@ keys=halui.estop.is-activated,halui.machine.is-on,halui.mode.is-auto,\
 halui.mode.is-manual,halui.mode.is-mdi,halui.mode.is-teleop,halui.mode.is-mdi,\
 halui.mode.is-manual,halui.program.is-idle,halui.program.is-paused,\
 halui.program.is-running \
-keys=halui.mist.is-on,halui.flood.is-on,halui.spindle.0.is-on
+keys=halui.mist.is-on,halui.flood.is-on,halui.spindle.0.is-on \
+keys=pyvcp.relay-machine,pyvcp.relay-spindle,pyvcp.relay-spindle-air
+
+# report more often
+setp mqtt-publisher.period [MQTT]PERIOD
 
 
 ## debounce probe (there were 1-2 samples long pulses when moving Z axis with 3D probe)
