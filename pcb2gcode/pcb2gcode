@@ -14,7 +14,7 @@ DEPLOY_DIR=~/Documents/LAB/CNC/mill/gcode
 # STENCIL_OUTLINE=1 or leave STENCIL_OUTLINE=
 STENCIL_OUTLINE=
 # laser turn-on delay in seconds
-LASER_DELAY=0.15
+LASER_DELAY=0.3
 LASER_POWER=20000
 LASER_FEED=200
 
@@ -180,6 +180,8 @@ nom6=1
 zsafe=1
 zchange=0
 zchange-absolute=true
+spinup-time=$LASER_DELAY
+spindown-time=0
 g0-vertical-speed=3000
 g0-horizontal-speed=3000
 
@@ -250,8 +252,12 @@ function stencil_generate() {
     # replace up/down movement with laser on/off commands
     substitutions="/(Retract to tool change height)\$/d;\
 /^(MSG, Change tool bit/d;\
-s/^G0\\?0\\s*Z1\\(.0*\\)\\?\s*(\s*retract\s*)$/M5/;\
-s/^G0\\?1\\s*Z0\\(.0*\\)\\?\$/M3 S$LASER_POWER\nG04 P$LASER_DELAY/g"
+/^T[0-9]\\+$/d;\
+/^M0/d;\
+s/^M3.*$/G00 Z0/;\
+s/^G0\\?0\\s*Z1\\(.0*\\)\\?\\s*(\\s*retract\\s*)$/M5/;\
+s/^G0\\?1\\s*Z0\\(.0*\\)\\?\$/M3\nG04 P$LASER_DELAY/g;\
+/G53 G00\\? Z0/d"
     sed "$substitutions" -i.orig stencil-*.ngc
 }
 
