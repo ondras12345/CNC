@@ -247,7 +247,7 @@ function has_paste() {
 
 
 function stencil_generate() {
-    pcb2gcode --config <(stencil_conf) 2>&1 | tee stencil-stencil-pcb2gcode.log
+    pcb2gcode --config <(stencil_conf) 2>&1 | tee stencil-pcb2gcode.log
     # remove tool changes,
     # replace up/down movement with laser on/off commands
     substitutions="/(Retract to tool change height)\$/d;\
