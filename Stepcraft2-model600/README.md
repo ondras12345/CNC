@@ -97,7 +97,7 @@ Found issues:
 ### 2024-09-22
 - X axis cable guide was assembled incorrectly by the previous owner, the
   smaller hose was put into the bigger hole in the feedthrough and the bigger
-  hose does not fit. Designed a 3D printer part to prevent the wires from
+  hose does not fit. Designed a 3D printed part to prevent the wires from
   bending in this location: `X-cable-guide.FCStd`.
 
 ### 2024-08
