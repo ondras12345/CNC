@@ -1,0 +1,6 @@
+#!/bin/sh
+avrdude -p m16 -c usbasp -U flash:r:firmware_backup.bin:r
+# let's do that again, including trailing 0xFF
+avrdude -p m16 -c usbasp -A -U flash:r:firmware_backup_full.bin:r
+# read EEPROM
+avrdude -p m16 -c usbasp -A -U eeprom:r:eeprom.bin:r
