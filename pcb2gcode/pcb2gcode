@@ -89,7 +89,7 @@ mill-diameters=1.0mm,0.39mm
 mill-feed=500
 # TODO investigate mill-feed-direction (climb vs conventional)
 mill-vertfeed=120
-mill-speed=20000
+mill-speed=18000
 zwork=-0.12
 
 # Multi-pass isolation
@@ -121,7 +121,7 @@ cutter-diameter=1.0
 zcut=-$(calc $PCB_THICKNESS + 0.15)
 cut-feed=200
 cut-vertfeed=35
-cut-speed=20000
+cut-speed=18000
 cut-infeed=0.85
 cut-side=back
 $(
