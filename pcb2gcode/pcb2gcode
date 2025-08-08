@@ -64,7 +64,7 @@ fi
 # Machine settings
 metric=true
 metricoutput=true
-zsafe=2
+zsafe=1
 spinup-time=2.5
 zchange=0
 zchange-absolute=true
