@@ -86,7 +86,7 @@ optimise=0.02mm
 
 # Milling
 mill-diameters=1.0mm,0.39mm
-mill-feed=500
+mill-feed=400
 # TODO investigate mill-feed-direction (climb vs conventional)
 mill-vertfeed=120
 mill-speed=18000
