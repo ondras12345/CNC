@@ -19,7 +19,7 @@ LASER_POWER=20000
 LASER_FEED=200
 
 shopt -s nullglob
-set -e
+set -euo pipefail
 
 function calc() {
     awk "BEGIN { print $*}"
@@ -144,6 +144,14 @@ al-y=10mm
 al-probefeed=25  # TODO faster ?? - calculate from controller latency
 # 100 would probably be fine with 3D probe
 al-probecode=G38.2
+# Choose tool 1 BEFORE probing, to make sure we use the correct tool length offset.
+# I'm not sure what happened, but I already crashed the machine once due to
+# this problem. I think it had something to do with a previous milldrill
+# operation, which used the same 1mm bit, but callled it T6 rather than T1.
+# Let's always measure the actual tool length before probing.
+al-probe-on=M6T1@(MSG, Attach the probe tool)@M0 ( Temporary machine stop. )
+# show heightmap when done probing
+al-probe-off=REPLACE_PCBPLOT_IF_TASK@(MSG, Detach the probe tool)@M0 ( Temporary machine stop. )
 # TODO this does not autolevel outline and drilling
 EOF
 }
@@ -261,6 +269,13 @@ s/^G0\\?1\\s*Z0\\(.0*\\)\\?\$/M3\nG04 P$LASER_DELAY/g;\
     sed "$substitutions" -i.orig stencil-*.ngc
 }
 
+function replace_placeholders() {
+    # boost's config file parser throws out the # character and there is no
+    # way to escape it. Thus, we need to have pcb2gcode emit a placeholder
+    # and replace it manually.
+    sed 's/^REPLACE_PCBPLOT_IF_TASK$/o123 if [#<_task> GE 1]\n    o<pcbplot> call\no123 endif/' -i "$1"
+}
+
 
 help() {
     echo "pcb2gcode config generator"
@@ -330,6 +345,8 @@ case $action in
 
     run)
         pcb2gcode --config <(conf) 2>&1 | tee pcb2gcode.log
+        [ -f back.ngc ] && replace_placeholders back.ngc
+        [ -f front.ngc ] && replace_placeholders front.ngc
         if has_paste ; then
             stencil_generate
         fi
