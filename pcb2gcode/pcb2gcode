@@ -4,7 +4,7 @@
 # double sided: either set DOUBLE_SIDED=1 or leave DOUBLE_SIDED=
 DOUBLE_SIDED=
 # include bridges (useful if you aren't using double sided tape)
-BRIDGES=1
+BRIDGES=
 # actual thickness of PCB blank in mm
 PCB_THICKNESS=1.5
 # directory the generated ngc files should be copied to
@@ -113,7 +113,7 @@ drills-available=0.8mm:-0.3mm:+0.1mm,1.0mm:-0.2mm:+0.2mm
 
 zmilldrill=-$(calc $PCB_THICKNESS + 0.15)
 milldrill-diameter=1.0
-min-milldrill-hole-diameter=1.2  # TODO need 1.0 for 1mm slots
+min-milldrill-hole-diameter=1.201  # TODO need 1.0 for 1mm slots
 # outline (cut-) feeds and speeds are used
 
 # Outline
