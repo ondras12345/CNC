@@ -18,10 +18,12 @@ LASER_DELAY=0.3
 LASER_POWER=20000
 LASER_FEED=200
 
-# TODO tune these
-SILKSCREEN_POWER=10000
-SILKSCREEN_FEED=300
-SILKSCREEN_DELAY=0.15
+SILKSCREEN_POWER=20000
+# The laser needs a rather long time to "pierce" the surface of the FR4. No
+# idea why. After that, we can go rather fast.
+# Maybe the focal point was too deep?
+SILKSCREEN_DELAY=0.65
+SILKSCREEN_FEED=165
 
 shopt -s nullglob
 set -euo pipefail
@@ -435,9 +437,11 @@ case $action in
         [ -f back.ngc ] && replace_placeholders back.ngc
         [ -f front.ngc ] && replace_placeholders front.ngc
         if has_paste ; then
+            echo "generating stencil"
             stencil_generate
         fi
         if has_silk ; then
+            echo "generating silkscreen"
             silkscreen_generate
         fi
         ;;
